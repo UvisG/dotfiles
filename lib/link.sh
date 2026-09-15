@@ -16,6 +16,7 @@ LINKS=(
   "zsh/functions.zsh:.config/zsh/functions.zsh"
   "zsh/completions.zsh:.config/zsh/completions.zsh"
   "git/.gitconfig:.gitconfig"
+  "git/.gitignore_global:.gitignore_global"
   "vim/.vimrc:.vimrc"
   "sgpt/.sgptrc:.config/shell_gpt/.sgptrc"
 )

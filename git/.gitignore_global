@@ -1,0 +1,15 @@
+tmp*
+test
+.terraform
+.DS_Store
+.envrc
+.env.local
+plan*
+tfplan*
+graph.dot
+.idea
+.sops.yaml
+CLAUDE.md
+AGENTS.md
+
+**/.claude/settings.local.json
