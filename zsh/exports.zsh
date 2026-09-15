@@ -24,3 +24,12 @@ fi
 # is supported) - this makes litellm silently drop unsupported params like
 # that instead of erroring, rather than sgpt needing per-call flags.
 export LITELLM_DROP_PARAMS=true
+
+# pet reads this env var directly for its GitHub gist sync backend (pet
+# sync) - a real, built-in override, not a workaround. Needs a token with
+# the "gist" scope: https://github.com/settings/tokens/new. Populate once:
+#   security add-generic-password -a "$USER" -s "pet-github-token" -w
+if command -v security &>/dev/null; then
+  PET_GITHUB_ACCESS_TOKEN="$(security find-generic-password -a "$USER" -s "pet-github-token" -w 2>/dev/null)"
+  [ -n "$PET_GITHUB_ACCESS_TOKEN" ] && export PET_GITHUB_ACCESS_TOKEN
+fi

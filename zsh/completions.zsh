@@ -12,9 +12,9 @@ compinit
 # file via Homebrew, so they can't be picked up from FPATH above. When adding
 # a new CLI tool to the Brewfile, add its completion here too.
 
-# git, gh, sops, kubectx/kubens, glab: completion files are installed by
-# their Homebrew formulae into site-functions and picked up automatically
-# via FPATH above.
+# git, gh, sops, kubectx/kubens, glab, pet, helm: completion files are
+# installed by their Homebrew formulae into site-functions and picked up
+# automatically via FPATH above.
 
 if command -v kubectl &>/dev/null; then
   source <(kubectl completion zsh)
@@ -46,6 +46,14 @@ fi
 if command -v terragrunt &>/dev/null && command -v tofu &>/dev/null; then
   autoload -Uz bashcompinit && bashcompinit
   complete -C tofu terragrunt
+fi
+
+# fzf's own key bindings (Ctrl-T file search, Alt-C fuzzy cd, Ctrl-R history)
+# and completion - also required by pet, whose default snippet selector
+# shells out to fzf. Loaded before atuin below so atuin's own Ctrl-R bind
+# wins that key back; Ctrl-T/Alt-C are unaffected.
+if command -v fzf &>/dev/null; then
+  eval "$(fzf --zsh)"
 fi
 
 # atuin: shell history search/sync. Binds Ctrl-r and Up-arrow to its search

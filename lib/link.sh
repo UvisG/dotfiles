@@ -19,6 +19,7 @@ LINKS=(
   "git/.gitignore_global:.gitignore_global"
   "vim/.vimrc:.vimrc"
   "sgpt/.sgptrc:.config/shell_gpt/.sgptrc"
+  "pet/snippet.toml:.config/pet/snippet.toml"
 )
 
 copy_one() {

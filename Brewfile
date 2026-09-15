@@ -5,6 +5,7 @@
 brew "git"
 brew "gh"
 brew "kubectl"
+brew "helm"
 brew "awscli"
 brew "opentofu"
 brew "terragrunt"
@@ -19,6 +20,8 @@ brew "vim"
 brew "bat"
 brew "pipx" # used to install shell_gpt (sgpt) - see install.sh
 brew "glab"
+brew "fzf" # required by pet's default snippet selector
+brew "pet"
 
 tap "nklmilojevic/sofka"
 brew "nklmilojevic/sofka/sofka"

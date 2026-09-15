@@ -1,0 +1,114 @@
+
+[[Snippets]]
+  Description = "Export base64 ssh key"
+  Output = ""
+  Tag = []
+  command = "export TF_VAR_repository_ssh_key=\"$(base64 -i ~/.ssh/id_ed25519 | tr -d '\\n')\""
+
+[[Snippets]]
+  Description = "export variables to environment"
+  Output = ""
+  Tag = []
+  command = "export $(grep -v '^#' .env | xargs)"
+
+[[Snippets]]
+  Description = "Start docker engine"
+  Output = ""
+  Tag = []
+  command = "colima start"
+
+[[Snippets]]
+  Description = "Get k8s kubeconfig"
+  Output = ""
+  Tag = []
+  command = "aws eks update-kubeconfig --name <cluster_name=main> --region <region=eu-central-1> --profile=<aws_profile=demo>"
+
+[[Snippets]]
+  Description = "kubectl decode secret"
+  Output = ""
+  Tag = []
+  command = "kubectl get secret main -n flux -o jsonpath='{.data.identity}' | base64 --decode"
+
+[[Snippets]]
+  Description = "Check if FluxCD is okey"
+  Output = ""
+  Tag = []
+  command = "flux get sources git -A"
+
+[[Snippets]]
+  Description = "Restart deployment"
+  Output = ""
+  Tag = []
+  command = "k rollout restart deployment <deploymnet_name> -n <namespace_name>"
+
+[[Snippets]]
+  Description = "aws cli list specific records from aws hosted zone"
+  Output = ""
+  Tag = []
+  command = "aws route53 list-resource-record-sets --hosted-zone-id Z10477192AB04P3IOIJU --profile development  |jq '.ResourceRecordSets[] | select(.Name | contains(\"grafana\"))'"
+
+[[Snippets]]
+  Description = "kubectl get pods IPs"
+  Output = ""
+  Tag = []
+  command = "k get pods -n monitoring  -o custom-columns=NAME:.metadata.name,IP:.status.podIP"
+
+[[Snippets]]
+  Description = "parse json"
+  Output = ""
+  Tag = []
+  command = "kubectl get configmap kube-prometheus-stack-kubelet -n monitoring -o json | jq -r '.data[\"kubelet.json\"] | fromjson'"
+
+[[Snippets]]
+  Description = "Run kubectl pod for network debugging"
+  Output = ""
+  Tag = []
+  command = "kubectl run net-debug --image=nicolaka/netshoot -it --rm --restart=Never -- bash"
+
+[[Snippets]]
+  Description = "llama3.1L:8b model"
+  Output = ""
+  Tag = []
+  command = "ollama run llama3.1:8b"
+
+[[Snippets]]
+  Description = "find helm release versions and latest available versions"
+  Output = ""
+  Tag = []
+  command = "nova find --format table"
+
+[[Snippets]]
+  Description = "push changes to direct main branch last commit"
+  Output = ""
+  Tag = []
+  command = "git commit --amend --no-edit && git push --force origin main"
+
+[[Snippets]]
+  Description = "Count records in all collections"
+  Output = ""
+  Tag = []
+  command = "python3 -c \"from pymilvus import MilvusClient; c = MilvusClient(uri='http://localhost:19530'); [print(col, len(c.query(col, filter='Id > 0', output_fields=['Id'])), 'records') for col in c.list_collections()]\""
+
+[[Snippets]]
+  Description = "Query Milvus collection records (no vector)"
+  Output = ""
+  Tag = []
+  command = "python3 -c \"from pymilvus import MilvusClient; [print(r) for r in MilvusClient(uri='http://localhost:19530').query('<collection=prod_rgb_left_128_>', filter='Id > 0', output_fields=['Id','userId','isMobile','isDummy','createdAt'])]\""
+
+[[Snippets]]
+  Description = "Sops decrypt file"
+  Output = ""
+  Tag = []
+  command = "sops -d .env.local"
+
+[[Snippets]]
+  Description = "Check kubernetes nodegroups for nodes"
+  Output = ""
+  Tag = []
+  command = "kubectl get nodes -L eks.amazonaws.com/nodegroup"
+
+[[Snippets]]
+  Description = "Check certificate handshate with openssl"
+  Output = ""
+  Tag = []
+  command = "openssl s_client -connect <endpoint:port>"
