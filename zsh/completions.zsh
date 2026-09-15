@@ -25,6 +25,10 @@ if command -v sofka &>/dev/null; then
   source <(sofka completion zsh 2>/dev/null)
 fi
 
+if command -v awss &>/dev/null; then
+  source <(awss completion zsh 2>/dev/null)
+fi
+
 # zoxide init defines the z/zi commands themselves, plus their completion.
 if command -v zoxide &>/dev/null; then
   eval "$(zoxide init zsh)"

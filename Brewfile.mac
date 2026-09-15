@@ -4,9 +4,11 @@
 cask "bruno"
 cask "claude"
 cask "claude-code"
+cask "drawio"
 cask "freelens"
 cask "mongodb-compass"
 cask "unnaturalscrollwheels"
+cask "vorssaint"
 
 # cask "iterm2"
 # cask "rectangle"

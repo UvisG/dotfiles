@@ -21,6 +21,7 @@ LINKS=(
   "vim/.vimrc:.vimrc"
   "sgpt/.sgptrc:.config/shell_gpt/.sgptrc"
   "pet/snippet.toml:.config/pet/snippet.toml"
+  "awss/config.yaml:.awss/config.yaml"
 )
 
 copy_one() {

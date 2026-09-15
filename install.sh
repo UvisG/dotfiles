@@ -55,6 +55,10 @@ pipx inject shell-gpt click >/dev/null
 # litellm lets sgpt call Claude instead of OpenAI - see sgpt/.sgptrc.
 pipx inject shell-gpt litellm >/dev/null
 
+echo "==> Installing awss via go install"
+export PATH="$HOME/go/bin:$PATH"
+go install github.com/dyegoe/awss@latest
+
 echo "==> Linking dotfiles"
 "$REPO_DIR/lib/link.sh"
 

@@ -10,3 +10,6 @@ fi
 
 # pipx-installed CLIs (e.g. sgpt) land here.
 export PATH="$HOME/.local/bin:$PATH"
+
+# go-installed CLIs (e.g. awss) land here.
+export PATH="$HOME/go/bin:$PATH"
