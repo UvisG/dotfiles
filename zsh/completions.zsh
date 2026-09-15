@@ -12,9 +12,9 @@ compinit
 # file via Homebrew, so they can't be picked up from FPATH above. When adding
 # a new CLI tool to the Brewfile, add its completion here too.
 
-# git, gh, sops, kubectx/kubens: completion files are installed by their
-# Homebrew formulae into site-functions and picked up automatically via
-# FPATH above.
+# git, gh, sops, kubectx/kubens, glab: completion files are installed by
+# their Homebrew formulae into site-functions and picked up automatically
+# via FPATH above.
 
 if command -v kubectl &>/dev/null; then
   source <(kubectl completion zsh)
