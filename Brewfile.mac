@@ -1,0 +1,12 @@
+# macOS-only: GUI apps (casks) and Mac App Store apps. Casks don't exist
+# on Linux, so install.sh only runs this file when uname is Darwin.
+
+cask "claude"
+cask "claude-code"
+cask "freelens"
+cask "unnaturalscrollwheels"
+
+# cask "iterm2"
+# cask "rectangle"
+
+# mas "Xcode", id: 497799835
