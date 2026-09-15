@@ -17,6 +17,7 @@ brew "direnv"
 brew "git-delta"
 brew "vim"
 brew "bat"
+brew "pipx" # used to install shell_gpt (sgpt) - see install.sh
 
 tap "nklmilojevic/sofka"
 brew "nklmilojevic/sofka/sofka"

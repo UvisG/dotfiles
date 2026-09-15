@@ -11,8 +11,13 @@ TIMESTAMP="$(date +%Y%m%d%H%M%S)"
 LINKS=(
   "zsh/.zshrc:.zshrc"
   "zsh/.zprofile:.zprofile"
+  "zsh/exports.zsh:.config/zsh/exports.zsh"
+  "zsh/aliases.zsh:.config/zsh/aliases.zsh"
+  "zsh/functions.zsh:.config/zsh/functions.zsh"
+  "zsh/completions.zsh:.config/zsh/completions.zsh"
   "git/.gitconfig:.gitconfig"
   "vim/.vimrc:.vimrc"
+  "sgpt/.sgptrc:.config/shell_gpt/.sgptrc"
 )
 
 copy_one() {

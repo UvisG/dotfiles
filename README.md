@@ -13,12 +13,10 @@ This will:
 
 1. Install Homebrew if it's missing (works on macOS and Linux).
 2. Install everything listed in `Brewfile` (and `Brewfile.mac` on macOS).
-3. Copy the tracked dotfiles into `$HOME` as real, standalone files (never
-   symlinks - nothing in `$HOME` should depend on where this repo lives,
-   e.g. under `~/Documents`), backing up anything already there as
-   `<file>.bak.<timestamp>`.
-4. Export `DOTFILES` in `~/.zshenv` so `.zshrc` knows where to source the
-   modular pieces (`aliases.zsh`, `exports.zsh`, etc.) from.
+3. Copy the tracked dotfiles into `$HOME` as real, standalone files - never
+   symlinks, and nothing at shell startup reads from wherever this repo
+   happens to live (e.g. under `~/Documents`) - backing up anything already
+   there as `<file>.bak.<timestamp>`.
 
 Re-running `install.sh` is safe — it skips files already up to date
 and won't clobber unrelated existing config.
@@ -27,9 +25,14 @@ and won't clobber unrelated existing config.
 
     Brewfile        CLI tools, shared across macOS and Linux
     Brewfile.mac    GUI apps (casks) and Mac App Store apps, macOS only
-    zsh/            .zshrc, .zprofile, and the pieces they source:
+    zsh/            .zshrc, .zprofile, and the pieces it sources:
                     exports.zsh, aliases.zsh, functions.zsh, completions.zsh
+                    (deployed to ~/.config/zsh/, not sourced from here)
     lib/link.sh     installs the files above into $HOME (see below)
+
+`~/.zshrc` sources `~/.config/zsh/{exports,aliases,functions,completions}.zsh`
+by fixed path, plus `~/.config/zsh/local.zsh` if present for secrets/machine-
+local overrides (never tracked in this repo - see below).
 
 ## Adding a new dotfile
 
@@ -45,3 +48,16 @@ After installing something new with `brew install`/`brew install --cask`,
 regenerate the lists from what's actually on the machine:
 
     brew bundle dump --file=Brewfile --force
+
+## Secrets
+
+Never commit a real API key/token to this repo. On macOS, store it in
+Keychain once:
+
+    security add-generic-password -a "$USER" -s "<some-name>" -w
+
+then read it back in `exports.zsh` with
+`security find-generic-password -a "$USER" -s "<some-name>" -w` (see the
+Anthropic key there for a working example). For anything that doesn't fit
+that pattern, `~/.config/zsh/local.zsh` is sourced by `.zshrc` if present -
+it lives outside this repo and is never git-tracked.

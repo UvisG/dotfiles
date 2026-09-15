@@ -7,3 +7,6 @@ elif [ -x /usr/local/bin/brew ]; then
 elif [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
+
+# pipx-installed CLIs (e.g. sgpt) land here.
+export PATH="$HOME/.local/bin:$PATH"

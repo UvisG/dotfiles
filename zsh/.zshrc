@@ -1,7 +1,10 @@
-# Sourced by zsh. DOTFILES is exported from ~/.zshenv by install.sh; the
-# fallback below lets this file work even before that line exists.
-: "${DOTFILES:=$HOME/dotfiles}"
-
+# Sourced by zsh. Every file here (and this file itself) is a real, standalone
+# copy installed by lib/link.sh - nothing at shell startup reads from wherever
+# this repo happens to be checked out. Edit the source in the repo, then
+# re-run install.sh (or lib/link.sh) to pick up the change.
 for file in exports aliases functions completions; do
-  [ -f "$DOTFILES/zsh/$file.zsh" ] && source "$DOTFILES/zsh/$file.zsh"
+  [ -f "$HOME/.config/zsh/$file.zsh" ] && source "$HOME/.config/zsh/$file.zsh"
 done
+
+# Secrets/machine-local overrides - not part of this repo, never git-tracked.
+[ -f "$HOME/.config/zsh/local.zsh" ] && source "$HOME/.config/zsh/local.zsh"

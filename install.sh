@@ -45,14 +45,17 @@ if [[ "$(uname -s)" == "Darwin" ]] && [ -f "$REPO_DIR/Brewfile.mac" ]; then
   brew bundle --file="$REPO_DIR/Brewfile.mac"
 fi
 
+echo "==> Installing shell_gpt (sgpt) via pipx"
+export PATH="$HOME/.local/bin:$PATH"
+pipx install shell-gpt >/dev/null
+# shell_gpt's own dependency metadata doesn't always pull in click, leaving
+# it broken with "ModuleNotFoundError: No module named 'click'" - inject it
+# explicitly. Safe to re-run: pipx no-ops if it's already there.
+pipx inject shell-gpt click >/dev/null
+# litellm lets sgpt call Claude instead of OpenAI - see sgpt/.sgptrc.
+pipx inject shell-gpt litellm >/dev/null
+
 echo "==> Linking dotfiles"
 "$REPO_DIR/lib/link.sh"
-
-DOTFILES_LINE="export DOTFILES=\"$REPO_DIR\""
-touch "$HOME/.zshenv"
-if ! grep -qsF "$DOTFILES_LINE" "$HOME/.zshenv"; then
-  echo "$DOTFILES_LINE" >> "$HOME/.zshenv"
-  echo "==> Added DOTFILES export to ~/.zshenv"
-fi
 
 echo "==> Done. Restart your shell or run: exec zsh"
