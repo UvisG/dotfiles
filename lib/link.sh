@@ -17,6 +17,7 @@ LINKS=(
   "zsh/completions.zsh:.config/zsh/completions.zsh"
   "git/.gitconfig:.gitconfig"
   "git/.gitignore_global:.gitignore_global"
+  "git/.gitconfig-handwave:.gitconfig-handwave"
   "vim/.vimrc:.vimrc"
   "sgpt/.sgptrc:.config/shell_gpt/.sgptrc"
   "pet/snippet.toml:.config/pet/snippet.toml"

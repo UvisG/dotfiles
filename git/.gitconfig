@@ -1,6 +1,6 @@
 [user]
-	# name = Your Name
-	# email = you@example.com
+	 name = Uvis Grava
+	 email = uvis.grava@outlook.com
 
 [core]
 	pager = delta
@@ -15,3 +15,8 @@
 
 [merge]
 	conflictstyle = zdiff3
+
+# Overrides user.email for repos under this path - handwave.com work repos.
+[includeIf "gitdir:~/Documents/gitlab_handwave/"]
+	path = ~/.gitconfig-handwave
+
