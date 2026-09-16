@@ -1,10 +1,12 @@
 export EDITOR="vim"
 export HOMEBREW_NO_ENV_HINTS=1
 
-# Custom prompt: kube context/namespace (kube_ps1, defined in completions.zsh,
-# loaded after this file - fine, $(...) here is evaluated lazily per-prompt,
-# not at assignment time) + current directory. Deliberately no user@host.
-PROMPT='$(kube_ps1)%1~ %# '
+# Custom prompt: kube context/namespace (kube_ps1, defined in completions.zsh)
+# + current directory + git branch, with a red dot if the tree is dirty
+# (git_ps1, defined in functions.zsh) - both loaded after this file, fine
+# since $(...) here is evaluated lazily per-prompt, not at assignment time.
+# Deliberately no user@host.
+PROMPT='$(kube_ps1)%1~ $(git_ps1)%# '
 
 # atuin's "?" AI mode needs an OpenAI-compatible chat-completions endpoint
 # (e.g. Ollama locally, or OpenRouter/LiteLLM if you want to point it at
