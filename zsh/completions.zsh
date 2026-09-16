@@ -73,12 +73,9 @@ if command -v direnv &>/dev/null; then
 fi
 
 # kube-ps1: not a completion, but the same "load a tool's shell integration
-# once it's installed" pattern - shows current kube context/namespace in the
-# prompt.
+# once it's installed" pattern - defines the kube_ps1 function used by the
+# custom PROMPT set in exports.zsh (kube context/namespace, no user@host).
 if type brew &>/dev/null && command -v kubectl &>/dev/null; then
   KUBE_PS1_SH="$(brew --prefix)/opt/kube-ps1/share/kube-ps1.sh"
-  if [ -f "$KUBE_PS1_SH" ]; then
-    source "$KUBE_PS1_SH"
-    PS1='$(kube_ps1)'$PS1
-  fi
+  [ -f "$KUBE_PS1_SH" ] && source "$KUBE_PS1_SH"
 fi
