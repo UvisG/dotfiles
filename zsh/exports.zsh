@@ -1,6 +1,11 @@
 export EDITOR="vim"
 export HOMEBREW_NO_ENV_HINTS=1
 
+# Tells gpg-agent/pinentry which terminal to prompt on for passphrases -
+# without it, signing/decrypting from a shell other than the one gpg-agent
+# started in fails or hangs waiting on the wrong tty.
+export GPG_TTY="$(tty)"
+
 # Custom prompt: kube context/namespace (kube_ps1, defined in completions.zsh)
 # + current directory + git branch, with a red dot if the tree is dirty
 # (git_ps1, defined in functions.zsh) - both loaded after this file, fine
